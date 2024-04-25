@@ -1,16 +1,34 @@
 import fs from 'fs'
 
-export class ProductManager{
-  constructor(path){
-    this.path = path;
+export class ProductManager {
+  constructor() {
+    // this.path = path;
+    this.path = '../products.json';
+  }
+  
+  addProduct(newProduct) {
+    const products = this.loadProducts();
+    let existe = products.some(product => product.code === newProduct.code)
+    if (existe) {
+      console.log(`Error, no se puede agregar el producto "${newProduct.title}" porque el codigo esta repetido`);
+    } else {
+      newProduct.id = products.length + 1;
+      products.push(newProduct);
+      this.saveProducts(products);
+      console.log(`Producto "${newProduct.title}" agregado correctamente.`);
+    }
   }
 
   async getProducts(limit) {
-    const products = await fs.promises.readFile(this.path, 'utf-8');
-    const parsedProducts = await JSON.parse(products);
-    this.products = parsedProducts;
-    return limit === 0 ? parsedProducts : parsedProducts.slice(0, limit);
+    try {
+      const productsData = await fs.promises.readFile(this.path, 'utf-8');
+      const products = JSON.parse(productsData);
+      return limit === 0 ? products : products.slice(0, limit);
+    } catch (error) {
+      throw new Error(`Error al leer el archivo de productos: ${error.message}`);
+    }
   }
+
 
   getProductById(id) {
     const products = this.loadProducts();

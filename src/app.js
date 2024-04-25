@@ -2,6 +2,7 @@ import express from 'express';
 import { config } from './config.js';
 import {productsRoutes} from '../src/routes/products.routes.js'
 import { cartsRoutes } from './routes/carts.routes.js';
+import fs from 'fs'
 
 
 const app = express()
@@ -16,3 +17,8 @@ app.use('/static', express.static(`${config.DIRNAME}/public`))
 app.listen(config.PORT, () => {
   console.log(`Servidor activo en el puerto ${config.PORT}`);
 })
+
+// let products =  fs.readFileSync('../products.json');
+
+// let productParse = JSON.parse(products)
+// console.log(productParse);
