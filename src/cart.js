@@ -13,7 +13,6 @@ export class CartManager {
         console.log(`Error: el carrito con el ID ${newCartItem.id} ya existe.`);
       } else {
         carts.push(newCartItem);
-        carts.id = products.length + 1;
         await this.saveCarts(carts);
         console.log(`Carrito con ID ${newCartItem.id} agregado correctamente.`);
       }
