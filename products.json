@@ -1,1 +1,40 @@
-[{"title":"Producto modificado desde POSTMAN","description":"Producto agregado desde postman","price":1800,"stock":13,"status":true,"code":"A6","id":1,"category":5},{"title":"Producto 2","description":"Descripcion del producto 2","price":2000,"stock":20,"status":true,"code":"A2","id":2},{"title":"Producto 3","description":"Producto 3 modificado desde postman","price":1800,"stock":13,"status":true,"code":"A6","id":3,"category":5},{"title":"Producto nuevo","description":"Producto agregado desde la ruta","code":"A4","price":1500,"status":true,"category":3,"id":4}]
+[
+  {
+    "title": "Producto modificado desde POSTMAN",
+    "description": "Producto agregado desde postman",
+    "price": 1800,
+    "stock": 13,
+    "status": true,
+    "code": "A6",
+    "id": 1,
+    "category": 5
+  },
+  {
+    "title": "Producto 2",
+    "description": "Descripcion del producto 2",
+    "price": 2000,
+    "stock": 20,
+    "status": true,
+    "code": "A2",
+    "id": 2
+  },
+  {
+    "title": "Producto 3",
+    "description": "Producto 3 modificado desde postman",
+    "price": 1800,
+    "stock": 13,
+    "status": true,
+    "code": "A6",
+    "id": 3,
+    "category": 5
+  },
+  {
+    "title": "Producto nuevo",
+    "description": "Producto agregado desde la ruta",
+    "code": "A4",
+    "price": 1500,
+    "status": true,
+    "category": 3,
+    "id": 4
+  }
+]

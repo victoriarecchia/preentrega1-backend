@@ -4,7 +4,6 @@ import { ProductManager } from "../products.js"
 export const productsRoutes = Router()
 
 const productManager = new ProductManager()
-const ID = 4;
 
 // 1.La ruta raíz GET / deberá listar todos los productos de la base. (Incluyendo la limitación ?limit)
 productsRoutes.get('/', async (req, res) => {
@@ -50,7 +49,6 @@ productsRoutes.post('/', async (req, res) => {
 // La ruta PUT /:pid deberá tomar un producto y actualizarlo por los campos enviados desde body. NUNCA se debe actualizar o eliminar el id al momento de hacer dicha actualización
 // productsRoutes.put('/:pid', (req, res) => {
 // Ruta para actualizar un producto por su ID
-// Ruta para actualizar un producto por su ID
 productsRoutes.put('/:pid', async (req, res) => {
   try {
     // Extraer el ID del producto de los parámetros de la solicitud
@@ -82,5 +80,18 @@ productsRoutes.put('/:pid', async (req, res) => {
     res.status(200).json(existingProduct);
   } catch (error) {
     res.status(500).json({ error: error.message });
-  }
+  } 
 });
+
+// La ruta DELETE /:pid deberá eliminar el producto con el pid indicado. 
+
+
+productsRoutes.delete('/:pid', async (req, res) => {
+  try {
+    const productId = req.params.pid;
+    await productManager.deleteProductById(productId)
+    res.status(200).send({ origin: 'server1', payload: `Producto con el id:${productoDelete} eliminado` })
+  } catch (error) {
+    res.status(500).send({ error: error.message })
+  }
+})

@@ -17,8 +17,3 @@ app.use('/static', express.static(`${config.DIRNAME}/public`))
 app.listen(config.PORT, () => {
   console.log(`Servidor activo en el puerto ${config.PORT}`);
 })
-
-// let products =  fs.readFileSync('../products.json');
-
-// let productParse = JSON.parse(products)
-// console.log(productParse);

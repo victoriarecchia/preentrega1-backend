@@ -2,10 +2,9 @@ import fs from 'fs'
 
 export class ProductManager {
   constructor() {
-    // this.path = path;
     this.path = '../products.json';
   }
-  
+
   addProduct(newProduct) {
     const products = this.loadProducts();
     let existe = products.some(product => product.code === newProduct.code)
@@ -37,6 +36,30 @@ export class ProductManager {
       throw new Error("Producto no encontrado.");
     }
     return product;
+  }
+
+  
+  async addProductToCart(cartId, productId, quantity) {
+    try {
+      let carts = await this.loadCarts();
+      const index = carts.findIndex(cart => cart.id === cartId);
+      if (index === -1) {
+        throw new Error("Carrito no encontrado.");
+      }
+
+      const cart = carts[index];
+      const existingProduct = cart.products.find(product => product.id === productId);
+
+      if (existingProduct) {
+        existingProduct.quantity += quantity;
+      } else {
+        cart.products.push({ id: productId, quantity });
+      }
+
+      await this.saveCarts(carts);
+    } catch (error) {
+      throw new Error(`Error al agregar producto al carrito: ${error.message}`);
+    }
   }
 
   updateProduct(id, newData) {
