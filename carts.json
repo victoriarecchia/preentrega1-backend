@@ -1,1 +1,30 @@
-[{"id":1,"Pruductos":[{"title":"Producto 3","description":"Producto 3 modificado desde postman","price":1800,"stock":13,"status":true,"code":"A6","id":3,"category":5},{"title":"Producto nuevo","description":"Producto agregado desde la ruta","code":"A4","price":1500,"status":true,"category":3,"id":4}]},{"id":420103,"products":[{"title":"Producto nuevo","description":"Producto agregado desde el POST","code":"A4","price":1500,"status":true,"category":3,"id":4}]}]
+[
+    {
+        "id": 420103,
+        "products": [
+            {
+                "title": "Producto nuevo",
+                "description": "Producto agregado desde el POST",
+                "code": "A4",
+                "price": 1500,
+                "status": true,
+                "category": 3,
+                "id": 4
+            }
+        ]
+    },
+    {
+        "id": 329468,
+        "products": [
+            {
+                "title": "Producto nuevo",
+                "description": "Producto agregado desde el POST",
+                "code": "A4",
+                "price": 1500,
+                "status": true,
+                "category": 3,
+                "id": 2
+            }
+        ]
+    }
+]
