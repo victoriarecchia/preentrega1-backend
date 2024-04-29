@@ -21,6 +21,7 @@ export class CartManager {
     }
   }
 
+
   async getAllCarts(limit = 0) {
     try {
       const cartsData = await fs.promises.readFile(this.path, 'utf-8');
@@ -30,6 +31,31 @@ export class CartManager {
       throw new Error(`Error al leer los carritos: ${error.message}`);
     }
   }
+
+  async addProductToCart(cartId, productId, quantity) {
+    try {
+        const carts = await this.loadCarts();
+        const cartIndex = carts.findIndex(cart => cart.id === cartId);
+        if (cartIndex === -1) {
+            throw new Error(`El carrito con ID ${cartId} no existe.`);
+        }
+        const productIndex = carts[cartIndex].products.findIndex(product => product.id === productId);
+        if (productIndex !== -1) {
+            // Si el producto ya está en el carrito, actualizar la cantidad
+            carts[cartIndex].products[productIndex].quantity += quantity;
+        } else {
+            // Si el producto no está en el carrito, agregarlo como un nuevo elemento
+            carts[cartIndex].products.push({
+                id: productId,
+                quantity: quantity
+            });
+        }
+        await this.saveCarts(carts);
+        console.log(`Producto con ID ${productId} agregado al carrito con ID ${cartId} correctamente.`);
+    } catch (error) {
+        console.log(`Error al agregar el producto al carrito: ${error.message}`);
+    }
+}
 
   async getCartById(id) {
     try {
@@ -74,6 +100,10 @@ export class CartManager {
     }
   }
 
+  async addProductToCart(cartId, productId, quantity) {
+// completar
+  }
+
   async loadCarts() {
     try {
       const data = await fs.promises.readFile(this.path, 'utf-8');
@@ -91,4 +121,6 @@ export class CartManager {
       console.log(`Error al guardar los carritos: ${error.message}`);
     }
   }
+  
 }
+

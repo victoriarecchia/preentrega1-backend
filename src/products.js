@@ -3,6 +3,7 @@ import fs from 'fs'
 export class ProductManager {
   constructor() {
     this.path = '../products.json';
+    
   }
 
   addProduct(newProduct) {
@@ -38,7 +39,7 @@ export class ProductManager {
     return product;
   }
 
-  
+
   async addProductToCart(cartId, productId, quantity) {
     try {
       let carts = await this.loadCarts();

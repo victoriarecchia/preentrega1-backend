@@ -1,9 +1,11 @@
 import { Router } from "express"
 import { CartManager } from '../cart.js'
+import { ProductManager } from "../products.js";
 
 export const cartsRoutes = Router()
 
 const cartManager = new CartManager();
+const productManager2 = new ProductManager();
 
 // Ruta raíz POST para crear un nuevo carrito
 cartsRoutes.post('/', (req, res) => {
@@ -18,7 +20,7 @@ cartsRoutes.post('/', (req, res) => {
           "price": 1500,
           "status": true,
           "category": 3,
-          "id": 4
+          "id": 2
         }
       ]
     };
@@ -40,7 +42,8 @@ cartsRoutes.get('/:cid', async (req, res) => {
   }
 });
 
-// Ruta POST para agregar un producto al carrito
+// Ruta POST para agregar un producto al carrito deberá agregar el producto al arreglo “products” del carrito seleccionado, agregándose como un objeto bajo el siguiente formato:
+
 cartsRoutes.post('/:cid/product/:pid', async (req, res) => {
   try {
     const cartId = req.params.cid;
